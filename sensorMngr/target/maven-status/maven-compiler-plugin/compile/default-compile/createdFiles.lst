@@ -1,0 +1,5 @@
+com\uade\tpo\service\MedicionService.class
+com\uade\tpo\SensorMngrMain.class
+com\uade\tpo\entity\Medicion.class
+com\uade\tpo\repository\MedicionRepository.class
+com\uade\tpo\dto\MedicionDTO.class

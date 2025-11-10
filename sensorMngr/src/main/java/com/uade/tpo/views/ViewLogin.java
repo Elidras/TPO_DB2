@@ -24,11 +24,13 @@ public class ViewLogin {
         boolean salir = false;
 
         while (!salir && usuarioEnSesion == null) {
+            SpaceAdder.addSpace(9);
             System.out.println("\n==== MENÚ PRINCIPAL =====");
             System.out.println("1) Iniciar sesión");
             System.out.println("2) Salir");
             System.out.print("Seleccione una opción: ");
             String opcion = sc.nextLine().trim();
+            SpaceAdder.addSpace(3);
 
             switch (opcion) {
                 case "1":
@@ -52,6 +54,7 @@ public class ViewLogin {
     }
 
     private User intentarLogin(Scanner sc) {
+        SpaceAdder.addSpace(9);
         System.out.println("\n===== INICIO DE SESIÓN =====");
         System.out.print("Ingrese su mail: ");
         String mail = sc.nextLine().trim();
@@ -62,6 +65,7 @@ public class ViewLogin {
         if (maybeUser.isPresent()) {
             return maybeUser.get();
         } else {
+            SpaceAdder.addSpace(3);
             System.out.println("Credenciales incorrectas. Intente nuevamente.");
             return null;
         }

@@ -37,7 +37,7 @@ public class ViewLogin {
                 case "2":
                     salir = true;
                     System.out.println("Saliendo...");
-                    break;
+                    System.exit(0);
                 default:
                     System.out.println("Opción inválida. Intente nuevamente.");
             }

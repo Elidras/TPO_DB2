@@ -28,6 +28,11 @@ public class SensorMngrMain implements CommandLineRunner {
         System.out.println("SensorMngr started!");
         ViewLogin viewLogin = new ViewLogin(mongoDBCRUD);
         User usuario = viewLogin.mostrarMenuPrincipal();
+        if (usuario == null) {
+            System.out.println("Aplicación finalizada. No se inició sesión.");
+            return; // 👈 salimos sin ejecutar los menús
+        }
+
         if (usuario.getTipoUsuario().equals("admin")) {
             MenuAdmin menuAdmin = new MenuAdmin(usuario);
             menuAdmin.mostrarMenu();

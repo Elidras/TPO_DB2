@@ -1,5 +1,12 @@
-/Users/facundogarompolo/Downloads/BD2Final/TPO_DB2/sensorMngr/src/main/java/com/uade/tpo/entity/Medicion.java
-/Users/facundogarompolo/Downloads/BD2Final/TPO_DB2/sensorMngr/src/main/java/com/uade/tpo/repository/MedicionRepository.java
-/Users/facundogarompolo/Downloads/BD2Final/TPO_DB2/sensorMngr/src/main/java/com/uade/tpo/SensorMngrMain.java
-/Users/facundogarompolo/Downloads/BD2Final/TPO_DB2/sensorMngr/src/main/java/com/uade/tpo/dto/MedicionDTO.java
-/Users/facundogarompolo/Downloads/BD2Final/TPO_DB2/sensorMngr/src/main/java/com/uade/tpo/service/MedicionService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Medicion.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\MedicionService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\dto\MedicionDTO.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\SensorMngrMain.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\User.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\mongoDB\MongoConnection.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\SpaceAdder.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\mongoDB\MongoDBCRUD.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\repository\MedicionRepository.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuAdmin.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuUser.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\ViewLogin.java

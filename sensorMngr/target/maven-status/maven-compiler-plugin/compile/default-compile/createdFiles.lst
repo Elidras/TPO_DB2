@@ -1,4 +1,7 @@
+com\uade\tpo\cassandra\CassandraConfig.class
 com\uade\tpo\views\MenuUser.class
+com\uade\tpo\config\ScannerConfig.class
+com\uade\tpo\controllers\ViewsController.class
 com\uade\tpo\entity\User.class
 com\uade\tpo\SensorMngrMain.class
 com\uade\tpo\views\ViewLogin.class
@@ -9,4 +12,7 @@ com\uade\tpo\dto\MedicionDTO.class
 com\uade\tpo\views\SpaceAdder.class
 com\uade\tpo\mongoDB\MongoConnection.class
 com\uade\tpo\mongoDB\MongoDBCRUD.class
+com\uade\tpo\views\ViewAltaBaja.class
+com\uade\tpo\cassandra\CassandraMedicionCRUD.class
+com\uade\tpo\views\MenuTecnico.class
 com\uade\tpo\service\MedicionService.class

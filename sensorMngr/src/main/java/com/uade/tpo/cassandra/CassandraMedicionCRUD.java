@@ -13,7 +13,7 @@ import com.uade.tpo.entity.Medicion;
 public class CassandraMedicionCRUD {
 
     private final CqlSession session;
-
+    
     public CassandraMedicionCRUD(CqlSession session) {
         this.session = session;
     }

@@ -25,7 +25,6 @@ public class CassandraConfig {
 
     @Bean
     public CqlSession cqlSession() {
-        // Construye la sesión con un contact point y keyspace configurado
         CqlSession session = CqlSession.builder()
                 .addContactPoint(new InetSocketAddress(contactPoint, port))
                 .withLocalDatacenter(datacenter)
@@ -34,5 +33,10 @@ public class CassandraConfig {
 
         System.out.println("✅ Conexión exitosa a Cassandra -> keyspace: " + keyspace);
         return session;
+    }
+
+    @Bean
+    public CassandraMedicionCRUD cassandraMedicionCRUD(CqlSession session) {
+        return new CassandraMedicionCRUD(session);
     }
 }

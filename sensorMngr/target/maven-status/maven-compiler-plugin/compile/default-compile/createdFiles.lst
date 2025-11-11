@@ -1,21 +1,17 @@
-com\uade\tpo\web\OrderController.class
-com\uade\tpo\config\ScannerConfig.class
-com\uade\tpo\entity\User.class
-com\uade\tpo\SensorMngrMain.class
-com\uade\tpo\web\HistoryController.class
 com\uade\tpo\web\RedisHealthController.class
+<<<<<<< HEAD
 com\uade\tpo\dto\MedicionDTO.class
 com\uade\tpo\views\SpaceAdder.class
 com\uade\tpo\service\OrderQueueService.class
 com\uade\tpo\mongoDB\MongoDBCRUD.class
 com\uade\tpo\web\dto\DeliverRequest.class
 com\uade\tpo\web\InboxController.class
+=======
+>>>>>>> a818d861ba8514e10b0467b8926cb9c56987cfce
 com\uade\tpo\web\dto\OrderCreateRequest.class
 com\uade\tpo\web\ProcessController.class
 com\uade\tpo\views\ViewAltaBaja.class
-com\uade\tpo\service\SessionService.class
 com\uade\tpo\cassandra\CassandraMedicionCRUD.class
-com\uade\tpo\cassandra\CassandraConfig.class
 com\uade\tpo\views\MenuUser.class
 com\uade\tpo\controllers\ViewsController.class
 com\uade\tpo\config\RedisConfig.class
@@ -23,9 +19,27 @@ com\uade\tpo\views\ViewLogin.class
 com\uade\tpo\entity\Medicion.class
 com\uade\tpo\views\MenuAdmin.class
 com\uade\tpo\mongoDB\MongoConnection.class
-com\uade\tpo\web\SessionController.class
-com\uade\tpo\service\HistoryService.class
 com\uade\tpo\config\ProcessCatalogLoader.class
+<<<<<<< HEAD
 com\uade\tpo\service\MedicionService.class
+=======
+com\uade\tpo\views\MenuTecnico.class
+>>>>>>> a818d861ba8514e10b0467b8926cb9c56987cfce
 com\uade\tpo\query\RawQueryExecutor.class
 com\uade\tpo\service\InboxService.class
+com\uade\tpo\web\OrderController.class
+com\uade\tpo\config\ScannerConfig.class
+com\uade\tpo\entity\User.class
+com\uade\tpo\SensorMngrMain.class
+com\uade\tpo\web\HistoryController.class
+com\uade\tpo\dto\MedicionDTO.class
+com\uade\tpo\views\SpaceAdder.class
+com\uade\tpo\service\OrderQueueService.class
+com\uade\tpo\mongoDB\MongoDBCRUD.class
+com\uade\tpo\web\dto\DeliverRequest.class
+com\uade\tpo\web\InboxController.class
+com\uade\tpo\service\SessionService.class
+com\uade\tpo\cassandra\CassandraConfig.class
+com\uade\tpo\web\SessionController.class
+com\uade\tpo\service\HistoryService.class
+com\uade\tpo\service\MedicionService.class

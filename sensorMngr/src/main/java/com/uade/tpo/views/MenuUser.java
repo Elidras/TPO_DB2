@@ -46,10 +46,9 @@ public class MenuUser {
             System.out.println("1.  Cambiar datos de mi cuenta (Mongo)");
             System.out.println("2.  Solicitar mediciones de sensores (Cassandra)");
             System.out.println("3.  Consultar estado de deuda (Redis / sessions usage)");
-            System.out.println("3.  Consultar casilla de mensajes (Redis / inbox)"); // se respeta el “bug” de numeración
+            System.out.println("3.  Consultar casilla de mensajes (Redis / inbox)"); 
             System.out.println("5.  Hacer una búsqueda personalizada (Cassandra/Mongo)");
             System.out.println("6.  Cerrar sesión");
-            // --- Nuevas opciones Redis pedidas ---
             System.out.println("7.  Ver ofertas (catálogo en Redis)");
             System.out.println("8.  Solicitar proceso (crear orden y encolar)");
             System.out.println("9.  Ver pedidos COMPLETADOS (historial)");
@@ -67,8 +66,6 @@ public class MenuUser {
                 case "4" -> customQuery();                  // ya estaba (Cassandra/Mongo)
                 case "5" -> consultarCasillaMensajes();     // Redis inbox
                 case "6" -> { System.out.println("Cerrando sesión..."); salir = true; }
-
-                // --- Nuevas (Redis) ---
                 case "7" -> verOfertas();                   // GET /ofertas
                 case "8" -> solicitarProceso();             // POST /orders
                 case "9" -> verPedidosCompletados();        // GET /users/{uid}/history
@@ -78,8 +75,6 @@ public class MenuUser {
             }
         }
     }
-
-    // -------------------- EXISTENTES (se respetan) --------------------
 
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
@@ -112,11 +107,12 @@ public class MenuUser {
 
     private void customQuery() {
         RawQueryExecutor query = new RawQueryExecutor(cCRUD, mongoCRUD);
+        System.out.println("Usar find({}) (MongoDB - Sensores) o SELECT (Cassandra - Mediciones)");
         System.out.print("Escribe tu query: ");
         String input = scanner.nextLine();
 
         Object result = query.executeAuto(input);
-
+        SpaceAdder.addSpace(3);
         System.out.println("✅ Resultado:");
         System.out.println(result);
     }
@@ -126,9 +122,6 @@ public class MenuUser {
         verInbox();
     }
 
-    // -------------------- NUEVAS (Redis) --------------------
-
-    /** 7) Ver ofertas (catálogo en Redis) -> GET /ofertas */
     private void verOfertas() {
         try {
             String json = httpGet(BASE + "/ofertas");
@@ -260,8 +253,6 @@ public class MenuUser {
         }
     }
 
-    // -------------------- HTTP helpers --------------------
-
     private String httpGet(String url) throws Exception {
         HttpRequest rq = HttpRequest.newBuilder(URI.create(url)).GET().build();
         HttpResponse<String> rs = http.send(rq, HttpResponse.BodyHandlers.ofString());
@@ -289,7 +280,6 @@ public class MenuUser {
         throw new RuntimeException("POST " + url + " -> " + rs.statusCode() + " | " + rs.body());
     }
 
-    // -------------------- Utils --------------------
     private static String str(Object o) { return o == null ? null : String.valueOf(o); }
     private static long getAsLong(Object o) {
         if (o == null) return 0L;

@@ -6,10 +6,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+import com.uade.tpo.cassandra.CassandraMedicionCRUD;
+import com.uade.tpo.entity.Medicion;
 import com.uade.tpo.entity.Sensor;
+import com.datastax.oss.driver.api.core.CqlSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.uade.tpo.entity.User;
@@ -50,7 +54,6 @@ public class MenuTecnico {
             System.out.println("3. Consultar casilla de mensajes");
             System.out.println("4. Cambiar estado sensor");
             System.out.println("5. Cerrar sesión");
-            // —— funciones Redis nuevas para técnico ——
             System.out.println("6. Reclamar siguiente pedido (cola Redis)");
             System.out.println("7. Entregar resultado de pedido reclamado");
 
@@ -82,13 +85,96 @@ public class MenuTecnico {
     }
 
     private void crearInformeMediciones() {
-        System.out.println(">> Abriendo plataforma de creacion de mediciones...");
-        // Dejá la lógica previa de tu equipo aquí si aplica (Cassandra / etc.)
+        System.out.println(">> Abriendo plataforma de creación de mediciones...");
+
+        try (CqlSession session = CqlSession.builder().build()) {
+            CassandraMedicionCRUD crud = CassandraMedicionCRUD.getInstance(session);
+
+            boolean salir = false;
+            while (!salir) {
+                System.out.println("\n--- Menú de consultas Cassandra ---");
+                System.out.println("1. Consultar por sensorId");
+                System.out.println("2. Consultar por sensorName");
+                System.out.println("3. Consultar por país");
+                System.out.println("4. Consultar por ciudad");
+                System.out.println("5. Consultar por estado");
+                System.out.println("6. Consulta raw CQL");
+                System.out.println("7. Salir al menú principal");
+                System.out.print("Seleccione opción: ");
+
+                String opcion = scanner.nextLine().trim();
+
+                switch (opcion) {
+                    case "1" -> {
+                        System.out.print("Ingrese sensorId (UUID): ");
+                        String input = scanner.nextLine();
+                        UUID sensorId = UUID.fromString(input);
+                        List<Medicion> lista = crud.findBySensorId(sensorId);
+                        mostrarMediciones(lista);
+                    }
+                    case "2" -> {
+                        System.out.print("Ingrese sensorName: ");
+                        String name = scanner.nextLine();
+                        List<Medicion> lista = crud.findBySensorName(name);
+                        mostrarMediciones(lista);
+                    }
+                    case "3" -> {
+                        System.out.print("Ingrese país: ");
+                        String pais = scanner.nextLine();
+                        List<Medicion> lista = crud.findByPais(pais);
+                        mostrarMediciones(lista);
+                    }
+                    case "4" -> {
+                        System.out.print("Ingrese ciudad: ");
+                        String ciudad = scanner.nextLine();
+                        List<Medicion> lista = crud.findByCiudad(ciudad);
+                        mostrarMediciones(lista);
+                    }
+                    case "5" -> {
+                        System.out.print("Ingrese estado: ");
+                        String estado = scanner.nextLine();
+                        List<Medicion> lista = crud.findByEstado(estado);
+                        mostrarMediciones(lista);
+                    }
+                    case "6" -> {
+                        System.out.print("Ingrese consulta CQL completa: ");
+                        String cql = scanner.nextLine();
+                        var rs = crud.rawQuery(cql);
+                        System.out.println("Resultado raw: " + rs);
+                    }
+                    case "7" -> salir = true;
+                    default -> System.out.println("Opción inválida, intente nuevamente.");
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Error conectando a Cassandra: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
+    private void mostrarMediciones(List<Medicion> lista) {
+        if (lista == null || lista.isEmpty()) {
+            System.out.println("No se encontraron mediciones.");
+            return;
+        }
+        System.out.println("Medidas encontradas: " + lista.size());
+        for (Medicion m : lista) {
+            System.out.println(
+                m.getFechaHora() + " | " +
+                m.getSensorName() + " | " +
+                m.getPais() + " | " +
+                m.getCiudad() + " | " +
+                m.getEstado() + " | " +
+                "Temp: " + m.getTemperatura() + " | " +
+                "Hum: " + m.getHumedad()
+            );
+        }
+}
 
     private void consultarCasillaMensajes(){
         System.out.println(">> Abriendo casilla de mensajes...");
-        // Si más adelante queréis que el técnico vea algo propio, añadid aquí.
+        
     }
 
     private void cambiarEstadoSensor(){

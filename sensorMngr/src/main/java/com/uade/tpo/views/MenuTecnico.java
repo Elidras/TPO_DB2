@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 import com.uade.tpo.entity.User;
 
-public class MenuAdmin {
+public class MenuTecnico {
 
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
 
-    public MenuAdmin(User usuario) {
+    public MenuTecnico(User usuario) {
         this.usuario = usuario;
     }
 
@@ -18,12 +18,11 @@ public class MenuAdmin {
 
         while (!salir) {
             SpaceAdder.addSpace(9);
-            System.out.println("\n===== MENÚ ADMINISTRADOR =====");
+            System.out.println("\n===== MENÚ USUARIO =====");
             System.out.println("1. Cambiar datos de mi cuenta");
             System.out.println("2. Solicitar mediciones de sensores");
             System.out.println("3. Consultar estado de deuda");
-            System.out.println("4. Agregar o dar de baja cuentas de usuarios");
-            System.out.println("5. Cerrar sesión");
+            System.out.println("4. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
             SpaceAdder.addSpace(3);
 
@@ -31,12 +30,11 @@ public class MenuAdmin {
 
             switch (opcion) {
                 case "1" -> cambiarDatosCuenta();
-                case "2" -> solicitarMediciones();
+                case "2" -> crearInformeMediciones();
                 case "3" -> consultarDeuda();
-                case "4" -> gestionarUsuarios();
-                case "5" -> {
+                case "4" -> {
                     System.out.println("Cerrando sesión...");
-                    salir = true;   // ✅ return to controller
+                    salir = true;
                 }
                 default -> System.out.println("Opción inválida, intente nuevamente.");
             }
@@ -47,15 +45,11 @@ public class MenuAdmin {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
     }
 
-    private void solicitarMediciones() {
-        System.out.println(">> Solicitando mediciones de sensores...");
+    private void crearInformeMediciones() {
+        System.out.println(">> Abriendo plataforma de creacion de mediciones...");
     }
 
     private void consultarDeuda() {
         System.out.println(">> Consultando estado de deuda...");
-    }
-
-    private void gestionarUsuarios() {
-        System.out.println(">> Agregando o dando de baja usuarios...");
     }
 }

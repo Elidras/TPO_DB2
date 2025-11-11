@@ -21,7 +21,7 @@ public class SensorMngrMain implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("SensorMngr started!");
+        System.out.println("\n\nSensorMngr started!");
         viewsController.runApplication();
     }
 }

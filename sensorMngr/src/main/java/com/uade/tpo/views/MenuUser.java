@@ -17,12 +17,14 @@ public class MenuUser {
         boolean salir = false;
 
         while (!salir) {
+            SpaceAdder.addSpace(9);
             System.out.println("\n===== MENÚ USUARIO =====");
             System.out.println("1. Cambiar datos de mi cuenta");
             System.out.println("2. Solicitar mediciones de sensores");
             System.out.println("3. Consultar estado de deuda");
             System.out.println("4. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
+            SpaceAdder.addSpace(3);
 
             String opcion = scanner.nextLine();
 

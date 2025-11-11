@@ -9,17 +9,13 @@ import com.uade.tpo.mongoDB.MongoDBCRUD;
 public class ViewLogin {
 
     private final MongoDBCRUD mongoDBCRUD;
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner sc;
 
-    public ViewLogin(MongoDBCRUD mongoDBCRUD) {
+    public ViewLogin(MongoDBCRUD mongoDBCRUD, Scanner sc) {
         this.mongoDBCRUD = mongoDBCRUD;
+        this.sc = sc;
     }
 
-    /**
-     * Muestra el menú principal y gestiona el login.
-     * Devuelve el usuario si inicia sesión correctamente.
-     * Devuelve null si el usuario elige salir.
-     */
     public User mostrarMenuPrincipal() {
 
         while (true) {

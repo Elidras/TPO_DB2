@@ -1,16 +1,13 @@
 package com.uade.tpo.entity;
 
-
-
 public class User {
     private String id;
     private String nombre;
     private String mail;
     private String password;
     private Integer edad;
-    private String tipoUsuario; // 👈 admin, user, etc.
+    private String tipoUsuario;
 
-    
     public User() {}
 
     public User(String id, String nombre, String mail, String password, Integer edad, String tipoUsuario) {
@@ -22,7 +19,6 @@ public class User {
         this.tipoUsuario = tipoUsuario;
     }
 
-    // Getters y setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 

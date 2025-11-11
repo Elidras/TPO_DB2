@@ -5,3 +5,6 @@ com\uade\tpo\entity\Medicion.class
 com\uade\tpo\repository\MedicionRepository.class
 com\uade\tpo\dto\MedicionDTO.class
 com\uade\tpo\service\MedicionService.class
+com\uade\tpo\web\dto\DeliverRequest.class
+com\uade\tpo\web\InboxController.class
+com\uade\tpo\service\InboxService.class

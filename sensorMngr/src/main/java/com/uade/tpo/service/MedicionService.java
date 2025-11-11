@@ -1,5 +1,6 @@
 package com.uade.tpo.service;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import com.datastax.oss.driver.api.core.CqlSession;
@@ -8,6 +9,7 @@ import com.datastax.oss.driver.api.querybuilder.insert.Insert;
 import com.uade.tpo.dto.MedicionDTO;
 
 @Service
+@ConditionalOnProperty(name = "feature.cassandra.enabled", havingValue = "true")
 public class MedicionService {
 
     private final CqlSession session;

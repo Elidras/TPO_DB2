@@ -36,7 +36,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * Inicializar base de datos SQLite
+     * Inicializar base de datos
      */
     private void initializeDatabase() {
         System.out.println("Inicializando base de datos SQLite de facturacion...");
@@ -103,7 +103,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * METODO 1: Crear factura basada en tiempo de sesion desde Redis
+     * Crear factura basada en tiempo de sesion
      */
     public Factura crearFacturaDesdeSesion(String emailUsuario, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         Connection conn = null;
@@ -111,13 +111,13 @@ public class SQLiteFacturacionService {
             conn = getConnection();
             conn.setAutoCommit(false);
 
-            // 1. Calcular tiempo de sesion desde Redis
+            //Calcular tiempo de sesion
             double tiempoTotalHoras = calcularTiempoSesionDesdeRedis(emailUsuario, fechaInicio, fechaFin);
 
-            // 2. Calcular costo
+            //Calcular costo
             double costoTotal = calcularCostoDesdeTiempoSesion(tiempoTotalHoras);
 
-            // 3. Insertar factura
+            // Insertar factura
             String sqlFactura = """
                 INSERT INTO facturas (email_usuario, fecha_emision, fecha_vencimiento, total, estado, descripcion, horas_sesion)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -148,7 +148,7 @@ public class SQLiteFacturacionService {
                 }
             }
 
-            // 4. Insertar items de la factura
+            //Insertar items de la factura
             crearItemFactura(conn, facturaId, "Uso de plataforma", "TIEMPO_SESION",
                     tiempoTotalHoras, costoTotal, null);
 
@@ -179,7 +179,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * METODO 2: Calcular tiempo de sesion desde Redis
+     * Calcular tiempo de sesion desde Redis
      */
     private double calcularTiempoSesionDesdeRedis(String emailUsuario, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         try {
@@ -207,7 +207,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * METODO 3: Calcular costo basado en tiempo de sesion
+     * Calcular costo basado en tiempo de sesion
      */
     public double calcularCostoDesdeTiempoSesion(double tiempoTotalHoras) {
         double tarifaBasePorHora = 5.0;
@@ -227,7 +227,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * METODO 4: Crear factura por procesos ejecutados (usando tu catalogo de Redis)
+     * Crear factura por procesos ejecutados (usando tu catalogo de Redis)
      */
     public Factura crearFacturaPorProcesos(String emailUsuario, List<String> procesoIds) {
         Connection conn = null;
@@ -326,7 +326,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * METODO 5: Obtener factura por ID
+     * Obtener factura por ID
      */
     public Factura obtenerFacturaPorId(int id) {
         String sql = "SELECT * FROM facturas WHERE id = ?";
@@ -351,7 +351,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * METODO 6: Obtener facturas por email
+     * btener facturas por email
      */
     public List<Factura> obtenerFacturasPorEmail(String emailUsuario) {
         List<Factura> facturas = new ArrayList<>();
@@ -376,7 +376,6 @@ public class SQLiteFacturacionService {
         return facturas;
     }
 
-    // Métodos auxiliares privados
     private void crearItemFactura(Connection conn, int facturaId, String concepto, String tipoItem,
                                   double cantidad, double precioUnitario, String procesoId) throws SQLException {
         String sql = """

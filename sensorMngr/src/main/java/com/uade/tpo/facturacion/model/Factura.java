@@ -16,7 +16,6 @@ public class Factura {
     private LocalDateTime createdAt;
     private List<ItemFactura> items;
 
-    // Getters y setters CORRECTOS:
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

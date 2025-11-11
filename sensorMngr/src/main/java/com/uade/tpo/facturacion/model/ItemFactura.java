@@ -10,7 +10,6 @@ public class ItemFactura {
     private Double subtotal;
     private String procesoId;
 
-    // Getters y setters CORRECTOS:
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

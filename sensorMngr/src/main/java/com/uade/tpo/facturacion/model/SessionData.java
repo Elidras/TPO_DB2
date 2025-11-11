@@ -9,7 +9,6 @@ public class SessionData {
     private LocalDateTime fin;
     private long duracionMinutos;
 
-    // Constructores, getters y setters
     public SessionData() {}
 
     public SessionData(String sessionId, String emailUsuario, LocalDateTime inicio, LocalDateTime fin) {
@@ -19,7 +18,6 @@ public class SessionData {
         this.fin = fin;
     }
 
-    // Getters y setters...
     public String getSessionId() { return sessionId; }
     public void setSessionId(String sessionId) { this.sessionId = sessionId; }
 

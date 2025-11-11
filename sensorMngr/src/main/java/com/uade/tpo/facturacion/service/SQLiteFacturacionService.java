@@ -227,7 +227,7 @@ public class SQLiteFacturacionService {
     }
 
     /**
-     * Crear factura por procesos ejecutados (usando tu catalogo de Redis)
+     * Crear factura por procesos ejecutados
      */
     public Factura crearFacturaPorProcesos(String emailUsuario, List<String> procesoIds) {
         Connection conn = null;

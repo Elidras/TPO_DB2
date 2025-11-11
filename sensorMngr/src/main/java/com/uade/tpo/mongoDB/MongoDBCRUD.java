@@ -144,13 +144,30 @@ public class MongoDBCRUD {
 
         System.out.println("✅ Usuario dado de alta correctamente.");
     }
-    public List<Document> rawFind(String rawFind) {
-        String json = rawFind.substring(5, rawFind.length() - 1).trim();
-        Document filter = Document.parse(json);
+    public List<Document> rawFind(String rawInput) {
+        try {
+            String trimmed = rawInput.trim();
 
-        return mongoDatabase
-                .getCollection("sensores")
-                .find(filter)
-                .into(new ArrayList<>());
+            if (!trimmed.toLowerCase().startsWith("find(") || !trimmed.endsWith(")")) {
+                throw new IllegalArgumentException("Input must be in format find({...})");
+            }
+
+            String json = trimmed.substring(trimmed.indexOf('(') + 1, trimmed.lastIndexOf(')')).trim();
+            System.out.println(json);
+            Document filter = Document.parse(json);
+
+            return mongoDatabase
+                    .getCollection("sensores")  // fixed collection
+                    .find(filter)
+                    .into(new ArrayList<>());
+
+        } catch (Exception e) {
+            System.err.println("❌ Error executing rawFind: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void cambiarEstadoSensor(){
+        
     }
 }

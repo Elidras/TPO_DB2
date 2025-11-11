@@ -23,10 +23,8 @@ public class MenuAdmin {
             SpaceAdder.addSpace(9);
             System.out.println("\n===== MENÚ ADMINISTRADOR =====");
             System.out.println("1. Cambiar datos de mi cuenta");
-            System.out.println("2. Solicitar mediciones de sensores");
-            System.out.println("3. Consultar estado de deuda");
-            System.out.println("4. Agregar o dar de baja cuentas de usuarios");
-            System.out.println("5. Cerrar sesión");
+            System.out.println("2. Agregar o dar de baja cuentas de usuarios");
+            System.out.println("3. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
             SpaceAdder.addSpace(3);
 
@@ -34,10 +32,8 @@ public class MenuAdmin {
 
             switch (opcion) {
                 case "1" -> cambiarDatosCuenta();
-                case "2" -> solicitarMediciones();
-                case "3" -> consultarDeuda();
-                case "4" -> gestionarUsuarios();
-                case "5" -> {
+                case "2" -> gestionarUsuarios();
+                case "3" -> {
                     System.out.println("Cerrando sesión...");
                     salir = true;
                 }
@@ -49,14 +45,6 @@ public class MenuAdmin {
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
         mongoCRUD.modificarAtributoUsuario(usuario);   // ✅ ahora usa instancia
-    }
-
-    private void solicitarMediciones() {
-        System.out.println(">> Solicitando mediciones de sensores...");
-    }
-
-    private void consultarDeuda() {
-        System.out.println(">> Consultando estado de deuda...");
     }
 
     private void gestionarUsuarios() {

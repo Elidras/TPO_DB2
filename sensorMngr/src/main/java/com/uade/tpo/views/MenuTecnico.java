@@ -24,8 +24,9 @@ public class MenuTecnico {
             System.out.println("\n===== MENÚ USUARIO =====");
             System.out.println("1. Cambiar datos de mi cuenta");
             System.out.println("2. Solicitar mediciones de sensores");
-            System.out.println("3. Consultar estado de deuda");
-            System.out.println("4. Cerrar sesión");
+            System.out.println("3. Consultar casilla de mensajes");
+            System.out.println("4. Cambiar estado sensor");
+            System.out.println("5. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
             SpaceAdder.addSpace(3);
 
@@ -34,8 +35,9 @@ public class MenuTecnico {
             switch (opcion) {
                 case "1" -> cambiarDatosCuenta();
                 case "2" -> crearInformeMediciones();
-                case "3" -> consultarDeuda();
-                case "4" -> {
+                case "3" -> consultarCasillaMensajes();
+                case "4" -> cambiarEstadoSensor();
+                case "5" -> {
                     System.out.println("Cerrando sesión...");
                     salir = true;
                 }
@@ -52,8 +54,12 @@ public class MenuTecnico {
     private void crearInformeMediciones() {
         System.out.println(">> Abriendo plataforma de creacion de mediciones...");
     }
+    private void consultarCasillaMensajes(){
+        System.out.println(">> Abriendo casilla de mensajes...");
+    }
 
-    private void consultarDeuda() {
-        System.out.println(">> Consultando estado de deuda...");
+    private void cambiarEstadoSensor(){
+        System.out.println(">> Abriendo menu de cambio...");
+        
     }
 }

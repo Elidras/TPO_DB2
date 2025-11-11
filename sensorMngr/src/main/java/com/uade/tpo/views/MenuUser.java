@@ -29,8 +29,10 @@ public class MenuUser {
             System.out.println("1. Cambiar datos de mi cuenta");
             System.out.println("2. Solicitar mediciones de sensores");
             System.out.println("3. Consultar estado de deuda");
-            System.out.println("4. Cerrar sesión");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("3. Consultar casilla de mensajes");
+            System.out.println("5. Hacer una búsqueda personalizada");
+            System.out.println("6. Cerrar sesión");
+            System.out.print("\nSeleccione una opción: ");
             SpaceAdder.addSpace(3);
 
             String opcion = scanner.nextLine();
@@ -39,11 +41,12 @@ public class MenuUser {
                 case "1" -> cambiarDatosCuenta();
                 case "2" -> solicitarMediciones();
                 case "3" -> consultarDeuda();
-                case "4" -> {
+                case "4" -> customQuery();
+                case "5" -> consultarCasillaMensajes();
+                case "6" -> {
                     System.out.println("Cerrando sesión...");
                     salir = true;
                 }
-                case "5" -> customQuery();
                 default -> System.out.println("Opción inválida, intente nuevamente.");
             }
         }
@@ -72,5 +75,8 @@ public class MenuUser {
 
         System.out.println("✅ Resultado:");
         System.out.println(result);
+    }
+    private void consultarCasillaMensajes(){
+
     }
 }

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.UUID;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.uade.tpo.entity.Sensor;
 import com.uade.tpo.entity.User;
 
 public class MongoDBCRUD {
@@ -153,7 +155,6 @@ public class MongoDBCRUD {
             }
 
             String json = trimmed.substring(trimmed.indexOf('(') + 1, trimmed.lastIndexOf(')')).trim();
-            System.out.println(json);
             Document filter = Document.parse(json);
 
             return mongoDatabase
@@ -167,7 +168,39 @@ public class MongoDBCRUD {
         }
     }
 
-    public void cambiarEstadoSensor(){
-        
+    public Sensor findSensorById(UUID id) {
+        MongoCollection<Document> sensorCollection = mongoDatabase.getCollection("sensores");
+
+        Document filtro = new Document("_id", id.toString());
+        Document doc = sensorCollection.find(filtro).first();
+
+        if (doc == null) return null; 
+
+        String nombre = doc.getString("nombre");
+        String tipoSensor = doc.getString("tipoSensor");
+        Double latitud = doc.containsKey("latitud") ? doc.getDouble("latitud") : null;
+        Double longitud = doc.containsKey("longitud") ? doc.getDouble("longitud") : null;
+        String ciudad = doc.getString("ciudad");
+        String pais = doc.getString("pais");
+        String estado = doc.getString("estado");
+        java.util.Date fechaInicio = doc.getDate("fechaInicioEmision");
+
+        return new Sensor(
+                id,
+                nombre,
+                tipoSensor,
+                latitud,
+                longitud,
+                ciudad,
+                pais,
+                estado,
+                fechaInicio
+        );
     }
+
+    public MongoDatabase getMongoDatabase() {
+    return this.mongoDatabase;
+}
+
+
 }

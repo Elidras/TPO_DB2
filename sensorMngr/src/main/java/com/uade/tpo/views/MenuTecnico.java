@@ -1,19 +1,26 @@
 package com.uade.tpo.views;
 
 import java.util.Scanner;
+import java.util.UUID;
 
+import com.uade.tpo.entity.Sensor;
 import com.uade.tpo.entity.User;
 import com.uade.tpo.mongoDB.MongoDBCRUD;
+import com.uade.tpo.service.SensorService;
 
 public class MenuTecnico {
 
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
     private final MongoDBCRUD mongoCRUD;   // ✅ agregado
+    private final SensorService sensorService;
+
 
     public MenuTecnico(User usuario, MongoDBCRUD mongoCRUD) {
         this.usuario = usuario;
         this.mongoCRUD = mongoCRUD;        // ✅ inicializado
+        this.sensorService = new SensorService(mongoCRUD);
+
     }
 
     public void mostrarMenu() {
@@ -48,18 +55,31 @@ public class MenuTecnico {
 
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
-        mongoCRUD.modificarAtributoUsuario(usuario);    // ✅ ahora modifica en Mongo
+        mongoCRUD.modificarAtributoUsuario(usuario); 
     }
 
     private void crearInformeMediciones() {
         System.out.println(">> Abriendo plataforma de creacion de mediciones...");
     }
+
     private void consultarCasillaMensajes(){
         System.out.println(">> Abriendo casilla de mensajes...");
     }
 
     private void cambiarEstadoSensor(){
         System.out.println(">> Abriendo menu de cambio...");
-        
+
+        System.out.print("Ingrese el ID del sensor a modificar: ");
+        String sensorIdInput = scanner.nextLine();
+        UUID sensorId = UUID.fromString(sensorIdInput);
+
+        Sensor sensor = mongoCRUD.findSensorById(sensorId);
+
+        if (sensor == null) {
+            System.out.println("❌ Sensor no encontrado.");
+            return;
+        }
+
+        sensorService.cambiarEstadoSensor(sensor);
     }
 }

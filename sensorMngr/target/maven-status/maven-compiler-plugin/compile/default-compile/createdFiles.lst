@@ -4,7 +4,6 @@ com\uade\tpo\entity\User.class
 com\uade\tpo\SensorMngrMain.class
 com\uade\tpo\web\HistoryController.class
 com\uade\tpo\web\RedisHealthController.class
-com\uade\tpo\repository\MedicionRepository.class
 com\uade\tpo\dto\MedicionDTO.class
 com\uade\tpo\views\SpaceAdder.class
 com\uade\tpo\service\OrderQueueService.class
@@ -27,7 +26,6 @@ com\uade\tpo\mongoDB\MongoConnection.class
 com\uade\tpo\web\SessionController.class
 com\uade\tpo\service\HistoryService.class
 com\uade\tpo\config\ProcessCatalogLoader.class
-com\uade\tpo\views\MenuTecnico.class
 com\uade\tpo\service\MedicionService.class
 com\uade\tpo\query\RawQueryExecutor.class
 com\uade\tpo\service\InboxService.class

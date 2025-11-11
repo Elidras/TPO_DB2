@@ -1,4 +1,4 @@
-package com.uade.tpo.servicios;
+package com.uade.tpo.service;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
+import com.uade.tpo.mongoDB.MongoDBCRUD;
+
 public class SensorService {
 
-    private final MongoDatabase mongoDatabase;
+    private final MongoDBCRUD mongoCRUD;
 
-    public SensorService(MongoDatabase mongoDatabase) {
-        this.mongoDatabase = mongoDatabase;
+    public SensorService(MongoDBCRUD mongoCRUD) {
+        this.mongoCRUD = mongoCRUD;
     }
 
     /**
@@ -54,8 +56,10 @@ public class SensorService {
                 observacion
         );
 
+        MongoDatabase mongo = mongoCRUD.getMongoDatabase();
+
         // Guardar en la colección "control"
-        MongoCollection<ControlFuncionamiento> collection = mongoDatabase.getCollection(
+        MongoCollection<ControlFuncionamiento> collection = mongo.getCollection(
                 "control", ControlFuncionamiento.class
         );
         collection.insertOne(control);

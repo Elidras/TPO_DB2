@@ -1,33 +1,47 @@
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\dto\MedicionDTO.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\controllers\ViewsController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\cassandra\CassandraMedicionCRUD.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\config\RedisConfig.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\cassandra\CassandraConfig.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\mongoDB\MongoDBCRUD.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\query\RawQueryExecutor.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\SpaceAdder.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\config\ScannerConfig.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\User.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\dto\DeliverRequest.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\SessionService.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuTecnico.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\HistoryController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\InboxService.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\ProcessController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\RedisHealthController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Medicion.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuAdmin.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\OrderQueueService.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\ViewLogin.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuUser.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\dto\OrderCreateRequest.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\SessionController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\config\ProcessCatalogLoader.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\HistoryService.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\MedicionService.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\mongoDB\MongoConnection.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\OrderController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\ViewAltaBaja.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\InboxController.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\repository\MedicionRepository.java
-C:\Users\aleji\Desktop\definitivo\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\SensorMngrMain.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\config\RedisConfig.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\config\ScannerConfig.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\cassandra\CassandraConfig.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Medicion.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\MedicionService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\SensorService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\dto\OrderCreateRequest.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\ControlFuncionamiento.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\SessionController.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\SessionService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\mongoDB\MongoConnection.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\InboxService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Alerta.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\ViewLogin.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuTecnico.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Mensaje.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\HistoryService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Sensor.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\dto\MedicionDTO.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\HistoryController.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\RedisHealthController.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\SensorMngrMain.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Movimiento.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\service\OrderQueueService.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\ViewAltaBaja.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Sesion.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Proceso.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\CassandraInitMediciones.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\controllers\ViewsController.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\dto\DeliverRequest.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Pago.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\User.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\mongoDB\MongoDBCRUD.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuAdmin.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\MenuUser.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\ProcessController.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\HistorialEjecucion.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Factura.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\query\RawQueryExecutor.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\config\ProcessCatalogLoader.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\SolicitudProceso.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\CuentaCorriente.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\entity\Grupo.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\views\SpaceAdder.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\OrderController.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\cassandra\CassandraMedicionCRUD.java
+C:\Users\HP\Documents\Facultad\DB 2\TPO_DB2\sensorMngr\src\main\java\com\uade\tpo\web\InboxController.java

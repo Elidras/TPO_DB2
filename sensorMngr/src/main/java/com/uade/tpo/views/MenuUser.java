@@ -5,10 +5,11 @@ import java.util.Scanner;
 import com.uade.tpo.entity.User;
 
 public class MenuUser {
+
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
 
-    public MenuUser(User usuario) { 
+    public MenuUser(User usuario) {
         this.usuario = usuario;
     }
 
@@ -23,7 +24,7 @@ public class MenuUser {
             System.out.println("4. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
 
-           String opcion = scanner.nextLine();
+            String opcion = scanner.nextLine();
 
             switch (opcion) {
                 case "1" -> cambiarDatosCuenta();
@@ -37,8 +38,6 @@ public class MenuUser {
             }
         }
     }
-
-
 
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());

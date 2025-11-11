@@ -1,13 +1,15 @@
 package com.uade.tpo.views;
 
 import java.util.Scanner;
+
 import com.uade.tpo.entity.User;
 
 public class MenuAdmin {
+
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
 
-    public MenuAdmin(User usuario) { 
+    public MenuAdmin(User usuario) {
         this.usuario = usuario;
     }
 
@@ -32,7 +34,7 @@ public class MenuAdmin {
                 case "4" -> gestionarUsuarios();
                 case "5" -> {
                     System.out.println("Cerrando sesión...");
-                    salir = true;
+                    salir = true;   // ✅ return to controller
                 }
                 default -> System.out.println("Opción inválida, intente nuevamente.");
             }

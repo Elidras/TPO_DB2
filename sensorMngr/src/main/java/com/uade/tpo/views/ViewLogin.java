@@ -1,4 +1,5 @@
 package com.uade.tpo.views;
+
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import com.uade.tpo.mongoDB.MongoDBCRUD;
 public class ViewLogin {
 
     private final MongoDBCRUD mongoDBCRUD;
+    private final Scanner sc = new Scanner(System.in);
 
     public ViewLogin(MongoDBCRUD mongoDBCRUD) {
         this.mongoDBCRUD = mongoDBCRUD;
@@ -15,15 +17,12 @@ public class ViewLogin {
 
     /**
      * Muestra el menú principal y gestiona el login.
-     * Si el login es exitoso, devuelve el usuario completo.
-     * Si falla, devuelve null.
+     * Devuelve el usuario si inicia sesión correctamente.
+     * Devuelve null si el usuario elige salir.
      */
     public User mostrarMenuPrincipal() {
-        Scanner sc = new Scanner(System.in);
-        User usuarioEnSesion = null;
-        boolean salir = false;
 
-        while (!salir && usuarioEnSesion == null) {
+        while (true) {
             SpaceAdder.addSpace(9);
             System.out.println("\n==== MENÚ PRINCIPAL =====");
             System.out.println("1) Iniciar sesión");
@@ -33,27 +32,26 @@ public class ViewLogin {
             SpaceAdder.addSpace(3);
 
             switch (opcion) {
-                case "1":
-                    usuarioEnSesion = intentarLogin(sc);
-                    break;
-                case "2":
-                    salir = true;
+                case "1" -> {
+                    User usuario = intentarLogin();
+                    if (usuario != null) {
+                        System.out.println("\n✅ Bienvenido, " + usuario.getNombre() +
+                                " (" + usuario.getMail() + ") — Tipo: " + usuario.getTipoUsuario());
+                        return usuario;
+                    }
+                }
+
+                case "2" -> {
                     System.out.println("Saliendo...");
-                    System.exit(0);
-                default:
-                    System.out.println("Opción inválida. Intente nuevamente.");
+                    return null;
+                }
+
+                default -> System.out.println("Opción inválida. Intente nuevamente.");
             }
         }
-
-        if (usuarioEnSesion != null) {
-            System.out.println("\n✅ Bienvenido, " + usuarioEnSesion.getNombre() +
-                    " (" + usuarioEnSesion.getMail() + ") — Tipo: " + usuarioEnSesion.getTipoUsuario());
-        }
-
-        return usuarioEnSesion;
     }
 
-    private User intentarLogin(Scanner sc) {
+    private User intentarLogin() {
         SpaceAdder.addSpace(9);
         System.out.println("\n===== INICIO DE SESIÓN =====");
         System.out.print("Ingrese su mail: ");
@@ -62,6 +60,7 @@ public class ViewLogin {
         String password = sc.nextLine().trim();
 
         Optional<User> maybeUser = mongoDBCRUD.buscarUsuarioPorMailYPassword(mail, password);
+
         if (maybeUser.isPresent()) {
             return maybeUser.get();
         } else {

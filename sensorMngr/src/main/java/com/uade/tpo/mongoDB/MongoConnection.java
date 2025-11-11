@@ -1,5 +1,7 @@
 package com.uade.tpo.mongoDB;
 
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,5 +29,17 @@ public class MongoConnection {
         MongoDatabase database = client.getDatabase(databaseName);
         System.out.println("✅ Conexión exitosa a MongoDB -> " + database.getName());
         return database;
+    }
+
+    // ✅ NEW: Scanner bean (only one instance in entire app)
+    @Bean
+    public Scanner scanner() {
+        return new Scanner(System.in);
+    }
+
+    // ✅ NEW: MongoDBCRUD singleton bean
+    @Bean
+    public MongoDBCRUD mongoDBCRUD(MongoDatabase mongoDatabase, Scanner scanner) {
+        return MongoDBCRUD.getInstance(mongoDatabase, scanner);
     }
 }

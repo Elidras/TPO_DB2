@@ -16,12 +16,12 @@ import com.uade.tpo.views.ViewLogin;
 public class ViewsController {
 
     private final MongoDBCRUD mongoDB;
-    private final CassandraMedicionCRUD cassandraReader; // read-only service
+    private final CassandraMedicionCRUD cassandraReader; 
     private final Scanner scanner;
 
     public ViewsController(MongoDBCRUD mongoDB, CassandraMedicionCRUD cassandraReader, Scanner scanner) {
         this.mongoDB = mongoDB;
-        this.cassandraReader = cassandraReader; // injected but not touched directly by controller
+        this.cassandraReader = cassandraReader; 
         this.scanner = scanner;
     }
 

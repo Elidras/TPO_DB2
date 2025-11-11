@@ -9,11 +9,9 @@ import java.time.Duration;
 import java.util.Scanner;
 import java.util.UUID;
 
-<<<<<<< HEAD
 import com.uade.tpo.entity.Sensor;
-=======
 import com.fasterxml.jackson.databind.ObjectMapper;
->>>>>>> a818d861ba8514e10b0467b8926cb9c56987cfce
+
 import com.uade.tpo.entity.User;
 import com.uade.tpo.mongoDB.MongoDBCRUD;
 import com.uade.tpo.service.SensorService;
@@ -22,18 +20,8 @@ public class MenuTecnico {
 
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
-<<<<<<< HEAD
     private final MongoDBCRUD mongoCRUD;   // ✅ agregado
     private final SensorService sensorService;
-
-
-    public MenuTecnico(User usuario, MongoDBCRUD mongoCRUD) {
-        this.usuario = usuario;
-        this.mongoCRUD = mongoCRUD;        // ✅ inicializado
-        this.sensorService = new SensorService(mongoCRUD);
-
-=======
-    private final MongoDBCRUD mongoCRUD;   // ✅ ya existía
 
     // ✅ Soporte HTTP para hablar con los endpoints Redis del backend
     private final HttpClient http = HttpClient.newHttpClient();
@@ -47,7 +35,7 @@ public class MenuTecnico {
     public MenuTecnico(User usuario, MongoDBCRUD mongoCRUD) {
         this.usuario = usuario;
         this.mongoCRUD = mongoCRUD;
->>>>>>> a818d861ba8514e10b0467b8926cb9c56987cfce
+        this.sensorService = new SensorService(mongoCRUD);
     }
 
     public void mostrarMenu() {
@@ -87,17 +75,10 @@ public class MenuTecnico {
         }
     }
 
-    // =======================
-    //  Antiguas (sin tocar)
-    // =======================
-
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
-<<<<<<< HEAD
+
         mongoCRUD.modificarAtributoUsuario(usuario); 
-=======
-        mongoCRUD.modificarAtributoUsuario(usuario);
->>>>>>> a818d861ba8514e10b0467b8926cb9c56987cfce
     }
 
     private void crearInformeMediciones() {
@@ -111,8 +92,8 @@ public class MenuTecnico {
     }
 
     private void cambiarEstadoSensor(){
-<<<<<<< HEAD
-        System.out.println(">> Abriendo menu de cambio...");
+
+        System.out.println(">> Abriendo menú de cambio de estado de sensor...");
 
         System.out.print("Ingrese el ID del sensor a modificar: ");
         String sensorIdInput = scanner.nextLine();
@@ -126,19 +107,8 @@ public class MenuTecnico {
         }
 
         sensorService.cambiarEstadoSensor(sensor);
-=======
-        System.out.println(">> Abriendo menú de cambio de estado de sensor...");
-        // Mantener/ubicarse en la lógica que ya tuvieran
     }
 
-    // =======================
-    //  NUEVO: Redis / Pedidos
-    // =======================
-
-    /** POST /tech/claim con headers del técnico (X-User, X-Role=TECH).
-     *  - Saca de la cola y marca IN_PROGRESS
-     *  - Guarda el orderId reclamado para simplificar la entrega
-     */
     private void reclamarSiguientePedido() {
         try {
             HttpRequest req = HttpRequest.newBuilder()
@@ -247,6 +217,5 @@ public class MenuTecnico {
         } catch (Exception e) {
             System.out.println("❌ Excepción entregando resultado: " + e.getMessage());
         }
->>>>>>> a818d861ba8514e10b0467b8926cb9c56987cfce
     }
 }

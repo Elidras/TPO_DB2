@@ -3,14 +3,17 @@ package com.uade.tpo.views;
 import java.util.Scanner;
 
 import com.uade.tpo.entity.User;
+import com.uade.tpo.mongoDB.MongoDBCRUD;
 
 public class MenuTecnico {
 
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
+    private final MongoDBCRUD mongoCRUD;   // ✅ agregado
 
-    public MenuTecnico(User usuario) {
+    public MenuTecnico(User usuario, MongoDBCRUD mongoCRUD) {
         this.usuario = usuario;
+        this.mongoCRUD = mongoCRUD;        // ✅ inicializado
     }
 
     public void mostrarMenu() {
@@ -43,6 +46,7 @@ public class MenuTecnico {
 
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
+        mongoCRUD.modificarAtributoUsuario(usuario);    // ✅ ahora modifica en Mongo
     }
 
     private void crearInformeMediciones() {

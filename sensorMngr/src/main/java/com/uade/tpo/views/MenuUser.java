@@ -2,15 +2,22 @@ package com.uade.tpo.views;
 
 import java.util.Scanner;
 
+import com.uade.tpo.cassandra.CassandraMedicionCRUD;
 import com.uade.tpo.entity.User;
+import com.uade.tpo.mongoDB.MongoDBCRUD;
+import com.uade.tpo.query.RawQueryExecutor;
 
 public class MenuUser {
 
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
+    private final MongoDBCRUD mongoCRUD;   // ✅ agregado
+    private final CassandraMedicionCRUD cCRUD;
 
-    public MenuUser(User usuario) {
+    public MenuUser(User usuario, MongoDBCRUD mongoCRUD, CassandraMedicionCRUD cCRUD) {
         this.usuario = usuario;
+        this.mongoCRUD = mongoCRUD;
+        this.cCRUD = cCRUD;        // ✅ inicializado
     }
 
     public void mostrarMenu() {
@@ -36,6 +43,7 @@ public class MenuUser {
                     System.out.println("Cerrando sesión...");
                     salir = true;
                 }
+                case "5" -> customQuery();
                 default -> System.out.println("Opción inválida, intente nuevamente.");
             }
         }
@@ -43,6 +51,7 @@ public class MenuUser {
 
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
+        mongoCRUD.modificarAtributoUsuario(usuario);    // ✅ ahora modifica en Mongo
     }
 
     private void solicitarMediciones() {
@@ -51,5 +60,17 @@ public class MenuUser {
 
     private void consultarDeuda() {
         System.out.println(">> Consultando estado de deuda...");
+    }
+
+    private void customQuery() {
+        RawQueryExecutor query = new RawQueryExecutor(cCRUD, mongoCRUD);
+
+        System.out.print("Escribe tu query: ");
+        String input = scanner.nextLine();
+
+        Object result = query.executeAuto(input);
+
+        System.out.println("✅ Resultado:");
+        System.out.println(result);
     }
 }

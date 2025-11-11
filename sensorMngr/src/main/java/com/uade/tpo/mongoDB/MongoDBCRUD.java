@@ -1,5 +1,7 @@
 package com.uade.tpo.mongoDB;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -141,5 +143,14 @@ public class MongoDBCRUD {
         collection.insertOne(doc);
 
         System.out.println("✅ Usuario dado de alta correctamente.");
+    }
+    public List<Document> rawFind(String rawFind) {
+        String json = rawFind.substring(5, rawFind.length() - 1).trim();
+        Document filter = Document.parse(json);
+
+        return mongoDatabase
+                .getCollection("sensores")
+                .find(filter)
+                .into(new ArrayList<>());
     }
 }

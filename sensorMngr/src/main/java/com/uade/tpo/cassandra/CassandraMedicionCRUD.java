@@ -131,4 +131,7 @@ public class CassandraMedicionCRUD {
         }
         return lista;
     }
+    public Object rawQuery(String cql) {
+        return session.execute(cql);
+    }
 }

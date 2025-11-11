@@ -1,5 +1,4 @@
 com\uade\tpo\cassandra\CassandraConfig.class
-com\uade\tpo\views\MenuUser.class
 com\uade\tpo\config\ScannerConfig.class
 com\uade\tpo\controllers\ViewsController.class
 com\uade\tpo\entity\User.class

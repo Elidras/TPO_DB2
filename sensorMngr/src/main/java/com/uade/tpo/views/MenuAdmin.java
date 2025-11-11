@@ -3,14 +3,17 @@ package com.uade.tpo.views;
 import java.util.Scanner;
 
 import com.uade.tpo.entity.User;
+import com.uade.tpo.mongoDB.MongoDBCRUD;
 
 public class MenuAdmin {
 
     private final User usuario;
     private final Scanner scanner = new Scanner(System.in);
+    private final MongoDBCRUD mongoCRUD;   // ✅ Instancia del CRUD
 
-    public MenuAdmin(User usuario) {
+    public MenuAdmin(User usuario, MongoDBCRUD mongoCRUD) {
         this.usuario = usuario;
+        this.mongoCRUD = mongoCRUD;
     }
 
     public void mostrarMenu() {
@@ -36,7 +39,7 @@ public class MenuAdmin {
                 case "4" -> gestionarUsuarios();
                 case "5" -> {
                     System.out.println("Cerrando sesión...");
-                    salir = true;   // ✅ return to controller
+                    salir = true;
                 }
                 default -> System.out.println("Opción inválida, intente nuevamente.");
             }
@@ -45,6 +48,7 @@ public class MenuAdmin {
 
     private void cambiarDatosCuenta() {
         System.out.println(">> Cambiando datos de la cuenta de " + usuario.getNombre());
+        mongoCRUD.modificarAtributoUsuario(usuario);   // ✅ ahora usa instancia
     }
 
     private void solicitarMediciones() {
@@ -56,6 +60,8 @@ public class MenuAdmin {
     }
 
     private void gestionarUsuarios() {
-        System.out.println(">> Agregando o dando de baja usuarios...");
+        System.out.println(">> Gestión de usuarios (alta/baja)...");
+        ViewAltaBaja view = new ViewAltaBaja(mongoCRUD); // ✅ pasa CRUD a la vista
+        view.mostrarMenu();// ✅ menú de alta/baja
     }
 }

@@ -15,24 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/ofertas")
 public class ProcessController {
 
-    private final StringRedisTemplate tpl;
+  private final StringRedisTemplate tpl;
 
-    public ProcessController(StringRedisTemplate tpl) {
-        this.tpl = tpl;
-    }
+  public ProcessController(StringRedisTemplate tpl) {
+    this.tpl = tpl;
+  }
 
-    @GetMapping
-    public List<Map<Object, Object>> list() {
-        Set<String> ids = tpl.opsForSet().members("tpo:processes");
-        if (ids == null || ids.isEmpty()) return List.of();
+  // GET /ofertas -> lista todo el catálogo
+  @GetMapping
+  public List<Map<Object, Object>> list() {
+    Set<String> ids = tpl.opsForSet().members("tpo:processes");
+    if (ids == null || ids.isEmpty()) return List.of();
 
-        return ids.stream()
-                .map(id -> tpl.opsForHash().entries("tpo:process:" + id))
-                .collect(Collectors.toList());
-    }
+    return ids.stream()
+      .map(id -> tpl.opsForHash().entries("tpo:process:" + id))
+      .collect(Collectors.toList());
+  }
 
-    @GetMapping("/{id}")
-    public Map<Object, Object> get(@PathVariable String id) {
-        return tpl.opsForHash().entries("tpo:process:" + id);
-    }
+  // GET /ofertas/{id} -> una oferta concreta
+  @GetMapping("/{id}")
+  public Map<Object, Object> get(@PathVariable String id) {
+    return tpl.opsForHash().entries("tpo:process:" + id);
+  }
 }

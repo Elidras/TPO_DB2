@@ -1,34 +1,44 @@
 package com.uade.tpo.mongoDB;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.springframework.stereotype.Component;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.uade.tpo.entity.User;
 
-@Component
 public class MongoDBCRUD {
 
-    private static final String COLLECTION_NAME = "User";
+    private static MongoDBCRUD instance;
 
     private final MongoDatabase mongoDatabase;
     private final Scanner scanner;
 
-    public MongoDBCRUD(MongoDatabase mongoDatabase, Scanner scanner) {
+    private static final String COLLECTION_NAME = "User";
+
+    private MongoDBCRUD(MongoDatabase mongoDatabase, Scanner scanner) {
         this.mongoDatabase = mongoDatabase;
         this.scanner = scanner;
     }
 
+    public static synchronized MongoDBCRUD getInstance(MongoDatabase db, Scanner scan) {
+        if (instance == null) {
+            instance = new MongoDBCRUD(db, scan);
+        }
+        return instance;
+    }
+
     public Optional<User> buscarUsuarioPorMailYPassword(String mail, String password) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTION_NAME);
-        Document filtro = new Document("mail", mail).append("password", password);
 
+        Document filtro = new Document("mail", mail).append("password", password);
         Document doc = collection.find(filtro).first();
+
         if (doc == null) return Optional.empty();
 
         String id = doc.containsKey("_id") ? ((ObjectId) doc.get("_id")).toHexString() : null;
@@ -38,8 +48,7 @@ public class MongoDBCRUD {
         Integer edad = doc.containsKey("edad") ? doc.getInteger("edad") : null;
         String tipoUsuario = doc.containsKey("tipoUsuario") ? doc.getString("tipoUsuario") : "user";
 
-        User user = new User(id, nombre, mailField, pass, edad, tipoUsuario);
-        return Optional.of(user);
+        return Optional.of(new User(id, nombre, mailField, pass, edad, tipoUsuario));
     }
 
     public void modificarAtributoUsuario(User user) {
@@ -52,7 +61,6 @@ public class MongoDBCRUD {
         System.out.println("4. edad");
         System.out.println("5. tipoUsuario");
 
-        // Re-check that user still exists in DB
         Document filtro = new Document("_id", new ObjectId(user.getId()));
         Document userDoc = collection.find(filtro).first();
 
@@ -65,8 +73,8 @@ public class MongoDBCRUD {
         int opcion;
         try {
             opcion = Integer.parseInt(scanner.nextLine().trim());
-        } catch (NumberFormatException e) {
-            System.out.println("Entrada inválida. Debe ingresar un número.");
+        } catch (Exception e) {
+            System.out.println("Entrada inválida.");
             return;
         }
 
@@ -84,23 +92,22 @@ public class MongoDBCRUD {
             return;
         }
 
-        System.out.print("Ingrese el nuevo valor para " + campo + ": ");
+        System.out.print("Ingrese el nuevo valor: ");
         String nuevoValor = scanner.nextLine();
 
         Document actualizacion;
+
         if (campo.equals("edad")) {
             try {
                 int nuevaEdad = Integer.parseInt(nuevoValor);
-                actualizacion = new Document("$set", new Document(campo, nuevaEdad));
+                actualizacion = new Document("$set", new Document("edad", nuevaEdad));
                 user.setEdad(nuevaEdad);
-            } catch (NumberFormatException e) {
-                System.out.println("Edad inválida. Debe ser un número entero.");
+            } catch (Exception e) {
+                System.out.println("Edad inválida.");
                 return;
             }
         } else {
             actualizacion = new Document("$set", new Document(campo, nuevoValor));
-
-            // update in-memory user
             switch (campo) {
                 case "nombre" -> user.setNombre(nuevoValor);
                 case "mail" -> user.setMail(nuevoValor);
@@ -115,30 +122,35 @@ public class MongoDBCRUD {
 
     public void darDeBajaUsuarioPorMail(String mail) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTION_NAME);
+        Document result = collection.findOneAndDelete(new Document("mail", mail));
 
-        Document filtro = new Document("mail", mail);
-
-        Document userEliminado = collection.findOneAndDelete(filtro);
-
-        if (userEliminado == null) {
-            System.out.println("⚠️ No se encontró un usuario con ese mail.");
-        } else {
-            System.out.println("🗑️ Usuario con mail " + mail + " eliminado correctamente.");
-        }
+        if (result == null)
+            System.out.println("⚠️ No se encontró ese usuario.");
+        else
+            System.out.println("🗑️ Usuario eliminado con éxito.");
     }
 
     public void darDeAltaUsuario(User user) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTION_NAME);
 
-        Document nuevoUser = new Document()
+        Document doc = new Document()
                 .append("nombre", user.getNombre())
                 .append("mail", user.getMail())
                 .append("password", user.getPassword())
                 .append("edad", user.getEdad())
                 .append("tipoUsuario", user.getTipoUsuario());
 
-        collection.insertOne(nuevoUser);
+        collection.insertOne(doc);
 
-        System.out.println("✅ Usuario dado de alta correctamente en la base de datos.");
+        System.out.println("✅ Usuario dado de alta correctamente.");
+    }
+    public List<Document> rawFind(String rawFind) {
+        String json = rawFind.substring(5, rawFind.length() - 1).trim();
+        Document filter = Document.parse(json);
+
+        return mongoDatabase
+                .getCollection("sensores")
+                .find(filter)
+                .into(new ArrayList<>());
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import com.uade.tpo.cassandra.CassandraMedicionCRUD;
 import com.uade.tpo.entity.User;
 import com.uade.tpo.mongoDB.MongoDBCRUD;
+import com.uade.tpo.query.RawQueryExecutor;
 import com.uade.tpo.views.MenuAdmin;
 import com.uade.tpo.views.MenuTecnico;
 import com.uade.tpo.views.MenuUser;
@@ -16,12 +17,12 @@ import com.uade.tpo.views.ViewLogin;
 public class ViewsController {
 
     private final MongoDBCRUD mongoDB;
-    private final CassandraMedicionCRUD cassandraReader; // read-only service
+    private final CassandraMedicionCRUD cassandraReader; 
     private final Scanner scanner;
 
     public ViewsController(MongoDBCRUD mongoDB, CassandraMedicionCRUD cassandraReader, Scanner scanner) {
         this.mongoDB = mongoDB;
-        this.cassandraReader = cassandraReader; // injected but not touched directly by controller
+        this.cassandraReader = cassandraReader; 
         this.scanner = scanner;
     }
 
@@ -52,19 +53,19 @@ public class ViewsController {
 
                 switch (tipo) {
                     case "admin" -> {
-                        MenuAdmin adminView = new MenuAdmin(usuario);
+                        MenuAdmin adminView = new MenuAdmin(usuario,mongoDB);
                         adminView.mostrarMenu();
                         sessionActive = false; // returns to login menu after closing session
                     }
 
                     case "tecnico", "técnico" -> {
-                        MenuTecnico tecnicoView = new MenuTecnico(usuario);
+                        MenuTecnico tecnicoView = new MenuTecnico(usuario,mongoDB);
                         tecnicoView.mostrarMenu();
                         sessionActive = false;
                     }
 
                     case "user", "usuario" -> {
-                        MenuUser userView = new MenuUser(usuario);
+                        MenuUser userView = new MenuUser(usuario,mongoDB, cassandraReader);
                         userView.mostrarMenu();
                         sessionActive = false;
                     }
